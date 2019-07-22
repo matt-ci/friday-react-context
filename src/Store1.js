@@ -10,6 +10,7 @@ const propTypes = {
 };
 
 export function StoreProvider(props) {
+  console.log('<StoreProvider> render');
   const { children, state, eventHandlers } = props;
 
   const value = { state, eventHandlers };

@@ -23,7 +23,7 @@ function reducer1(state, action) {
   }
 }
 
-const StoreComponent = () => {
+const StoreComponent = (props) => {
   const [state, dispatch] = useReducer(reducer1, initialState1);
   const eventHandlers = {
     increment(key){
@@ -40,7 +40,7 @@ const StoreComponent = () => {
 
   return (
     <StoreProvider state={state} eventHandlers={eventHandlers}>
-      <App1 />
+      {props.children}
     </StoreProvider>
   );
 };
@@ -59,7 +59,14 @@ const store2 = createStore(reducer2,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );
 
-ReactDOM.render(<StoreComponent />, document.getElementById('root1'));
+class App1Wrapper extends React.Component{
+  render(){
+      console.log('<App1Wrapper> render')
+    return <StoreComponent ><App1 /></StoreComponent>
+  }
+}
+
+ReactDOM.render(<App1Wrapper/>, document.getElementById('root1'));
 ReactDOM.render(<Provider store={store2}><App2/></Provider>, document.getElementById('root2'));
 
 // If you want your app to work offline and load faster, you can change

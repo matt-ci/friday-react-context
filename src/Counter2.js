@@ -5,7 +5,7 @@ const defaultProps = {};
 
 const Counter2 = (props) => {
     const {item} = props;
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const value = useSelector(state=>state[item]);
     return(
         <div className={item} onClick={()=>{
