@@ -1,12 +1,13 @@
 import React, {useReducer} from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import './index.css';
 import App1 from './App1';
 import App2 from './App2';
 import { StoreProvider} from "./Store1";
 import * as serviceWorker from './serviceWorker';
+import {logger} from "./middleware";
 
 const initialState1 = {
   a: 0,
@@ -54,10 +55,10 @@ const reducer2 = (state={...initialState1}, action)=>{
       return state;
   }
 }
-
-const store2 = createStore(reducer2,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  );
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store2 = createStore(reducer2, /* preloadedState, */ composeEnhancers(
+  applyMiddleware(logger)
+  ));
 
 class App1Wrapper extends React.Component{
   render(){
