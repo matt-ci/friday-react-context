@@ -5,8 +5,8 @@ const propTypes = {};
 const defaultProps = {};
 
 const Counter1 = (props) => {
-    console.log('<Counter1> render');
     const {item} = props;
+    console.log(`<Counter1 ${item}> render`);
     const {state, eventHandlers} = React.useContext(Store1);
     const value = state[item];
     return(

@@ -51,4 +51,6 @@ Lots of useful middleware has already been created:
 * Logging
 * Crash reporting
 * Analytics
-* Async actions
+* [Async actions](https://github.com/redux-saga/redux-saga)
+* [Undo / Redo](https://github.com/omnidan/redux-undo)
+* [Persist and rehydrate the store](https://redux.js.org/introduction/ecosystem#persistence)
