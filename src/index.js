@@ -1,17 +1,20 @@
 import React, {useReducer} from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux'
 import './index.css';
-import App from './App';
-import { StoreProvider} from "./Store";
+import App1 from './App1';
+import App2 from './App2';
+import { StoreProvider} from "./Store1";
 import * as serviceWorker from './serviceWorker';
 
-const initialState = {
+const initialState1 = {
   a: 0,
   b: 0,
-  c:0
+  c: 0
 };
 
-function reducer(state, action) {
+function reducer1(state, action) {
   switch (action.type) {
     case 'increment':
       return {...state, [action.key]: state[action.key] + 1};
@@ -21,7 +24,7 @@ function reducer(state, action) {
 }
 
 const StoreComponent = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer1, initialState1);
   const eventHandlers = {
     increment(key){
       dispatch({type:'increment', key})
@@ -37,12 +40,25 @@ const StoreComponent = () => {
 
   return (
     <StoreProvider state={state} eventHandlers={eventHandlers}>
-      <App />
+      <App1 />
     </StoreProvider>
   );
 };
 
-ReactDOM.render(<StoreComponent />, document.getElementById('root'));
+
+const reducer2 = (state={...initialState1}, action)=>{
+   switch (action.type) {
+    case 'increment':
+      return {...state, [action.key]: state[action.key] + 1};
+    default:
+      return state;
+  }
+}
+
+const store2 = createStore(reducer2);
+
+ReactDOM.render(<StoreComponent />, document.getElementById('root1'));
+ReactDOM.render(<Provider store={store2}><App2/></Provider>, document.getElementById('root2'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

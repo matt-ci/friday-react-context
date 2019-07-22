@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const Store = React.createContext();
+export const Store2 = React.createContext();
 
 const propTypes = {
   children: PropTypes.element.isRequired,
@@ -9,11 +9,11 @@ const propTypes = {
   eventHandlers: PropTypes.object.isRequired,
 };
 
-export function StoreProvider(props) {
+export function Store2Provider(props) {
   const { children, state, eventHandlers } = props;
 
   const value = { state, eventHandlers };
-  return <Store.Provider value={value}>{children}</Store.Provider>;
+  return <Store2.Provider value={value}>{children}</Store2.Provider>;
 }
 
-StoreProvider.propTypes = propTypes;
+Store2Provider.propTypes = propTypes;

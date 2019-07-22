@@ -1,4 +1,4 @@
-.App {
+.App1, .App2 {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -8,6 +8,18 @@
     width: 100vw;
 }
 
+.App2 {
+    background-color: #e2e8f0;
+}
+
+.well{
+    width: 400px;
+    background-color: #2b6cb0;
+    border: 1px solid #2a4365;
+    color: #ebf8ff;
+    padding: 8px;
+    border-radius: 4px;
+}
 .a, .b, .c {
     height: 300px;
     width: 300px;
@@ -17,6 +29,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius: 4px;
 }
 
 .a {
