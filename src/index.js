@@ -1,11 +1,11 @@
 import React, {useReducer} from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux'
+import {Provider} from 'react-redux';
+import {createStore, applyMiddleware, compose} from 'redux'
 import './index.css';
 import App1 from './App1';
 import App2 from './App2';
-import { StoreProvider} from "./Store1";
+import {StoreProvider} from "./Store1";
 import {logger} from "./middleware";
 
 const initialState = {
@@ -26,8 +26,8 @@ function reducer1(state, action) {
 const StoreComponent = (props) => {
   const [state, dispatch] = useReducer(reducer1, {...initialState});
   const eventHandlers = {
-    increment(key){
-      dispatch({type:'increment', key})
+    increment(key) {
+      dispatch({type: 'increment', key})
     },
   };
   return (
@@ -36,12 +36,11 @@ const StoreComponent = (props) => {
     </StoreProvider>
   );
 };
-ReactDOM.render(<StoreComponent><App1 /></StoreComponent>, document.getElementById('root1'));
+ReactDOM.render(<StoreComponent><App1/></StoreComponent>, document.getElementById('root1'));
 
 
-
-const reducer2 = (state={...initialState}, action)=>{
-   switch (action.type) {
+const reducer2 = (state, action) => {
+  switch (action.type) {
     case 'increment':
       return {...state, [action.key]: state[action.key] + 1};
     default:
@@ -49,9 +48,9 @@ const reducer2 = (state={...initialState}, action)=>{
   }
 }
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store2 = createStore(reducer2, /* preloadedState, */ composeEnhancers(
+const store2 = createStore(reducer2, {...initialState}, composeEnhancers(
   applyMiddleware(logger)
-  ));
+));
 
 
 ReactDOM.render(<Provider store={store2}><App2/></Provider>, document.getElementById('root2'));

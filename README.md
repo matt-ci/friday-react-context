@@ -44,9 +44,12 @@ So now it's just as easy to use as `React.Context` but we don't end up with unne
 
 
 ## Redux ecosystem
-Redux has a large and useful ecosystem.
+Redux has a [large and useful ecosystem](https://redux.js.org/introduction/ecosystem).
+
 Dev Tools are really good.
+
 A good API for creating our own middleware.
+
 Lots of useful middleware has already been created:
 * Logging
 * Crash reporting
