@@ -55,7 +55,9 @@ const reducer2 = (state={...initialState1}, action)=>{
   }
 }
 
-const store2 = createStore(reducer2);
+const store2 = createStore(reducer2,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  );
 
 ReactDOM.render(<StoreComponent />, document.getElementById('root1'));
 ReactDOM.render(<Provider store={store2}><App2/></Provider>, document.getElementById('root2'));
